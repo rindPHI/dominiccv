@@ -1,25 +1,34 @@
-\ProvidesPackage{dominiccv}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{dominiccv}[2020/06/18 Dominic's Academic CV Template]
 
-\usepackage[margin=1in]{geometry}
-\usepackage{fontawesome5}
-\usepackage{academicons}
-\usepackage{parskip}
-\usepackage{xstring} % for \IfSubStr
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
 
-\usepackage[numbers,sort&compress]{natbib}
+\LoadClass{article}
+
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{fontawesome5}
+\RequirePackage{academicons}
+\RequirePackage{parskip}
+\RequirePackage{xstring}
+
+\RequirePackage[numbers,sort&compress]{natbib}
 \renewcommand\bibsection{\section*{\refname}}
 \renewcommand{\bibnumfmt}[1]{#1.}
 \renewcommand{\bibfont}{\small}
 
-\usepackage{multibib}
+\RequirePackage{multibib}
 \newcites{theses}{Theses}
 \newcites{conf}{International Conferences}
 \newcites{journal}{Scientific Journals}
 \newcites{subm}{Under Review}
 
-\newcommand{\makecvtitle}[1][Curriculum Vitae]{
+\RequirePackage{etoolbox}
+\patchcmd{\@maketitle}{\@title}{\@title{}, isn't it?}{}{}
+
+\newcommand{\makecvtitle}{
   \begin{center}
-    \sffamily\LARGE \textbf{\@author} \(\vert\) #1
+    \sffamily\LARGE \textbf{\@author} \(\vert\) {\@title}
   \end{center}
 }
 
@@ -100,3 +109,9 @@
   \fi%
 }
 \makeatother
+
+\renewcommand{\bibsection}{\cvsection{References}}
+\renewcommand\maketitle\makecvtitle
+\renewcommand\section\cvsection
+\renewcommand\subsection\subcvsection
+\renewcommand\subsubsection\subsubcvsection
