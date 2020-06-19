@@ -23,32 +23,38 @@
 \newcites{journal}{Scientific Journals}
 \newcites{subm}{Under Review}
 
-\RequirePackage{etoolbox}
-\patchcmd{\@maketitle}{\@title}{\@title{}, isn't it?}{}{}
+\def\address#1{\gdef\@address{#1}}
+\def\mail#1{\gdef\@mail{#1}}
+\def\phone#1{\gdef\@phone{#1}}
+\def\web#1{\gdef\@web{#1}}
+\def\dblp#1{\gdef\@dblp{#1}}
+\def\gscholar#1{\gdef\@gscholar{#1}}
+\def\orcid#1{\gdef\@orcid{#1}}
+\newcommand{\initskip}{\vspace{4ex}}
 
-\newcommand{\makecvtitle}{
-  \begin{center}
-    \sffamily\LARGE \textbf{\@author} \(\vert\) {\@title}
-  \end{center}
-}
-
-\newenvironment{persdata}{%
-  \begin{center}%
-  \sffamily%
-  \newcommand{\address}[1]{\faAddressBook~##1}%
-  \newcommand{\mail}[1]{\faEnvelope~\url{##1}}%
-  \newcommand{\phone}[1]{\faPhoneSquare~##1}%
-  \newcommand{\web}[1]{\faGlobe~\url{##1}}%
-  \newcommand{\dblp}[1]{\aidblpSquare~\url{##1}}%
-  \newcommand{\gscholar}[1]{\aiGoogleScholarSquare~\url{##1}}%
-  \newcommand{\orcid}[1]{\aiOrcid~\url{##1}}%
+\newcommand{\makecvtitle}[1][\@nil]{
   %
   \newcommand{\sep}{\quad}%
   \newcommand{\newl}{\\}%
   \newcommand{\newsec}{\\[1ex]}%
-}{\end{center}}
+  %
+  \begin{center}
+    \sffamily%
+    {\LARGE \textbf{\@author} \(\vert\) {\@title}}
 
-\newcommand{\initskip}{\vspace{4ex}}
+    \ifcsname @address\endcsname\faAddressBook~\@address\newl\fi%
+    \ifcsname @mail\endcsname\faEnvelope~\@mail\fi%
+    \ifcsname @phone\endcsname\sep\faPhoneSquare~\@phone\fi%
+    \newsec%
+    \ifcsname @web\endcsname\faGlobe~\url{\@web}\fi%
+    \ifcsname @gscholar\endcsname\newl\aiGoogleScholarSquare~\url{\@gscholar}\fi%
+    \ifcsname @dblp\endcsname\newl\aidblpSquare~\url{\@dblp}\fi%
+    \ifcsname @orcid\endcsname\newl\aiOrcid~\url{\@orcid}\fi%
+  \end{center}
+  %
+  \def\tmp{#1}%
+  \ifx\tmp\@nnil\else\initskip\fi%
+}
 
 \newcommand{\cvsection}[1]{
   \@startsection {section}{1}{\z@}%
@@ -111,7 +117,7 @@
 \makeatother
 
 \renewcommand{\bibsection}{\cvsection{References}}
-\renewcommand\maketitle\makecvtitle
+\renewcommand{\maketitle}[1][\@nil]{\makecvtitle[1]}
 \renewcommand\section\cvsection
 \renewcommand\subsection\subcvsection
 \renewcommand\subsubsection\subsubcvsection
