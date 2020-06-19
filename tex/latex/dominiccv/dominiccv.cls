@@ -18,6 +18,8 @@
 \renewcommand{\bibfont}{\small}
 
 \RequirePackage{multibib}
+\newcites{own}{Own Publications}
+\newcites{further}{Further References}
 \newcites{theses}{Theses}
 \newcites{conf}{International Conferences}
 \newcites{journal}{Scientific Journals}
