@@ -17,14 +17,6 @@
 \renewcommand{\bibnumfmt}[1]{#1.}
 \renewcommand{\bibfont}{\small}
 
-\RequirePackage{multibib}
-\newcites{own}{Own Publications}
-\newcites{further}{Further References}
-\newcites{theses}{Theses}
-\newcites{conf}{International Conferences}
-\newcites{journal}{Scientific Journals}
-\newcites{subm}{Under Review}
-
 \def\address#1{\gdef\@address{#1}}
 \def\mail#1{\gdef\@mail{#1}}
 \def\phone#1{\gdef\@phone{#1}}
