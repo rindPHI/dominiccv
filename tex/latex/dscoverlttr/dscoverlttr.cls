@@ -31,5 +31,5 @@
       \ifcsname fromemail\endcsname\faEnvelope~\usekomavar{fromemail}\fi%
       \ifcsname fromurl\endcsname\\\faGlobe~\texttt{\usekomavar{fromurl}}\fi%
     }%
-  \end{center}
-}
+  \end{center}%
+}%
