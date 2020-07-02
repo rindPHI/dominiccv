@@ -17,6 +17,9 @@
 \RequirePackage{fontawesome5}
 \RequirePackage{academicons}
 \RequirePackage{parskip}
+
+\addtoplength{sigbeforevskip}{3ex}
+
 \setkomafont{fromname}{\sffamily\bfseries}
 \setkomafont{fromaddress}{\sffamily}
 \setkomafont{addressee}{\sffamily}
