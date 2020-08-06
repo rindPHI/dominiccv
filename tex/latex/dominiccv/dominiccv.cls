@@ -39,7 +39,12 @@
     \ifcsname @address\endcsname\faAddressBook~\@address\newl\fi%
     \ifcsname @mail\endcsname\faEnvelope~\@mail\fi%
     \ifcsname @phone\endcsname\sep\faPhoneSquare~\@phone\fi%
-    \newsec%
+    %
+    \ifcsname @address\endcsname\newsec%
+    \else\ifcsname @mail\endcsname\newsec%
+    \else\ifcsname @phone\endcsname\newsec%
+    \fi\fi\fi
+    %
     \ifcsname @web\endcsname\faGlobe~\url{\@web}\fi%
     \ifcsname @gscholar\endcsname\newl\aiGoogleScholarSquare~\url{\@gscholar}\fi%
     \ifcsname @dblp\endcsname\newl\aidblpSquare~\url{\@dblp}\fi%
